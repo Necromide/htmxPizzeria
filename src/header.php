@@ -7,6 +7,8 @@
     <title>HTMX Musterpizzeria</title>
     <link rel="stylesheet" href="../assets/css/styles.css">  <!-- Verweis auf das CSS-Stylesheet -->
     <link rel="icon" href="../src/Images/PizzaIcon.ico" type="image/x-icon">
+    <!-- HTMX-Bibliothek einbinden -->
+    <script src="https://unpkg.com/htmx.org@1.9.6"></script>
 </head>
 
 <body>
