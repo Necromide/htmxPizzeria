@@ -1,8 +1,14 @@
 /* Allgemeine Stildefinitionen */
-body {
+html, body {
+    height: 100%;  /* Beide Elemente müssen 100% Höhe haben */
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+}
+
+body {
+    display: flex;          /* Machen Sie den Körper zu einem Flex-Container */
+    flex-direction: column; /* Ordnen Sie die Inhalte vertikal an */
 }
 
 /* Header-Styles */
@@ -21,7 +27,7 @@ nav {
     background-color: #333;
     padding: 1rem 0;
     display: flex;
-    justify-content: center; /* Horizontales Zentrieren */
+    justify-content: center;  /* Horizontales Zentrieren */
 }
 
 nav a {
@@ -38,6 +44,7 @@ nav a:hover {
 
 /* Main Content-Styles */
 main {
+    flex: 1;  /* Lassen Sie main den gesamten verfügbaren Raum einnehmen */
     padding: 2rem;
     display: flex;
     flex-direction: column;
@@ -64,6 +71,7 @@ main {
 
 /* Footer-Styles */
 footer {
+    flex-shrink: 0;  /* Verhindern Sie, dass der Footer kleiner wird */
     background-color: #333;
     color: #fff;
     padding: 1rem 0;
@@ -79,10 +87,48 @@ footer {
     border-radius: 10px;
     overflow: hidden;
     transition: box-shadow 0.3s ease;
-    padding: 1rem; /* Ein innerer Abstand kann nützlich sein, um den Inhalt vom Rand zu trennen */
+    padding: 1rem;
 }
 
 .warenkorb:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Responsive Design */
+@media only screen and (max-width: 768px) {
+    /* Für Tablets */
+    main {
+        padding: 1rem;
+    }
+
+    .pizza, .warenkorb {
+        margin: 0.5rem;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    /* Für Mobiltelefone */
+    nav {
+        flex-direction: column;
+    }
+
+    nav a {
+        margin: 0.2rem 0;
+    }
+
+    main {
+        padding: 0.5rem;
+    }
+
+    .pizza, .warenkorb {
+        margin: 0.5rem 0;
+        width: 100%;
+    }
+}
+
+.speisekarte {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}

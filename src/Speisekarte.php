@@ -67,11 +67,17 @@ if (isset($_POST['submit_order']) && isset($_POST['address']) && !empty($_SESSIO
     <h2>Ihr Warenkorb</h2>
     <div class="warenkorb">
         <?php
+        $gesamtpreis = 0; // Variable für den Gesamtpreis des Warenkorbs
+
         if (!empty($_SESSION['warenkorb'])) {
             foreach ($_SESSION['warenkorb'] as $product_id => $quantity) {
                 $sql_product = "SELECT * FROM article WHERE id = $product_id";
                 $product_result = mysqli_query($conn, $sql_product);
                 $product = mysqli_fetch_assoc($product_result);
+
+                // Preis für dieses Produkt zum Gesamtpreis hinzufügen
+                $gesamtpreis += $product['price'] * $quantity;
+
                 echo '<div>';
                 echo htmlspecialchars($product['name'], ENT_QUOTES, 'UTF-8') . ' x' . intval($quantity);
                 echo '<form action="speisekarte.php" method="post">';
@@ -80,6 +86,9 @@ if (isset($_POST['submit_order']) && isset($_POST['address']) && !empty($_SESSIO
                 echo '</form>';
                 echo '</div>';
             }
+
+            // Gesamtpreis anzeigen
+            echo "<div><strong>Gesamtpreis:</strong> " . number_format($gesamtpreis, 2) . "€</div>"; // number_format wird verwendet, um den Preis mit 2 Dezimalstellen anzuzeigen
         } else {
             echo "<p>Ihr Warenkorb ist leer.</p>";
         }
