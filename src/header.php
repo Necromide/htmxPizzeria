@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Viewport-Meta-Tag -->
-    <title>Codebasis Musterpizzeria</title>
+    <title>HTMX Musterpizzeria</title>
     <link rel="stylesheet" href="../assets/css/styles.css">  <!-- Verweis auf das CSS-Stylesheet -->
     <link rel="icon" href="../src/Images/PizzaIcon.ico" type="image/x-icon">
 </head>
@@ -12,7 +12,7 @@
 <body>
 
 <header>
-    <h1>Codebasis Musterpizzeria</h1>
+    <h1>HTMX Musterpizzeria</h1>
     <p>Musterstraße 123, 12345 Musterstadt</p>
 </header>
 
