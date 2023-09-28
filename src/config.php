@@ -1,6 +1,9 @@
 <?php
-// Session wird gestartet
-session_start();
+
+// Überprüfen, ob eine Session bereits gestartet wurde, bevor Sie versuchen, eine neue zu starten
+if(session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+}
 
 // Warenkorb-Initialisierung (wenn er noch nicht existiert)
 if (!isset($_SESSION['warenkorb'])) {
@@ -25,4 +28,5 @@ if (!$conn) {
 mysqli_set_charset($conn, "utf8");
 
 // Weitere allgemeine Einstellungen oder Funktionen können hier hinzugefügt werden
+
 ?>

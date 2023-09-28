@@ -1,4 +1,6 @@
 <?php
+include 'config.php';
+
 // Voraussetzung ist, dass $_SESSION['warenkorb'] und die $conn-Verbindung bereits initialisiert wurden.
 
 $gesamtpreis = 0;
