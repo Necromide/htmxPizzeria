@@ -57,7 +57,7 @@ include "header.php";
                 echo '<img src="' . htmlspecialchars($row['picture'], ENT_QUOTES, 'UTF-8') . '" alt="' . htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8') . '" style="width: 200px; height: auto; max-height: 200px; object-fit: cover; border-radius: 10px;">';
                 echo '<h3>' . htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8') . '</h3>';
                 echo '<p>Preis: ' . htmlspecialchars($row['price'], ENT_QUOTES, 'UTF-8') . '€</p>';
-                echo '<form action="speisekarte.php" method="post" hx-post="speisekarte.php" hx-target="#warenkorb-section" hx-swap="outerHTML">';
+                echo '<form action="speisekarte.php" method="post" hx-post="speisekarte.php" hx-target="#warenkorb-section" hx-swap="innerHTML">';
                 echo '<input type="hidden" name="product_id" value="' . intval($row['id']) . '">';
                 echo '<button type="submit" name="add_to_cart">In den Warenkorb</button>';
                 echo '</form>';
