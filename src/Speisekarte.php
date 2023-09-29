@@ -14,7 +14,11 @@ if (isset($_POST['add_to_cart']) && isset($_POST['product_id'])) {
 // Produkt aus dem Warenkorb entfernen
 if (isset($_POST['remove_from_cart']) && isset($_POST['product_id'])) {
     $product_id = intval($_POST['product_id']);
-    unset($_SESSION['warenkorb'][$product_id]);
+    if ($_SESSION['warenkorb'][$product_id] > 1) {
+        $_SESSION['warenkorb'][$product_id]--;
+    } else {
+        unset($_SESSION['warenkorb'][$product_id]);
+    }
 }
 
 // Bestellung abschließen
