@@ -95,11 +95,12 @@ include "header.php";
     </form>
 
     <!-- Modal für Bestätigung -->
-    <div id="confirmation-modal" style="display:none; position:fixed; top:30%; left:30%; width:40%; height:40%; z-index:1000; background-color: rgba(0,0,0,0.8); color: white; padding: 20px; border-radius: 10px;">
-        <h2>Bestellung bestätigt!</h2>
-        <p>Ihre Bestellung wurde erfolgreich aufgenommen.</p>
-        <button onclick="document.getElementById('confirmation-modal').style.display='none';" style="padding: 10px 15px; background-color: #e74c3c; color: white; border: none; border-radius: 5px; cursor: pointer;">OK</button>
+    <div id="confirmation-modal" style="display:none; position:fixed; top:30%; left:30%; width:30%; height:25%; z-index:1000; background-color: rgba(0,0,0,0.8); color: white; padding: 20px; border-radius: 10px; text-align: center;">
+        <h2 style="font-size: 24px;">Bestellung bestätigt!</h2>
+        <p style="font-size: 18px; margin-bottom: 20px;">Ihre Bestellung wurde erfolgreich aufgenommen.</p>
+        <button onclick="document.getElementById('confirmation-modal').style.display='none';" style="padding: 10px 20px; background-color: #e74c3c; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 18px;">OK</button>
     </div>
+
 
 
 </main>
