@@ -35,7 +35,12 @@ if (isset($_POST['submit_order']) && isset($_POST['address']) && !empty($_SESSIO
             }
         }
         unset($_SESSION['warenkorb']);
-        echo "<p>Bestellung erfolgreich abgeschlossen!</p>";
+        echo '<script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function() {
+                var modal = document.getElementById("confirmation-modal");
+                modal.style.display = "block";
+            });
+        </script>';
     }
 }
 
@@ -61,7 +66,7 @@ include "header.php";
                 echo '<img src="' . htmlspecialchars($row['picture'], ENT_QUOTES, 'UTF-8') . '" alt="' . htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8') . '" style="width: 200px; height: auto; max-height: 200px; object-fit: cover; border-radius: 10px;">';
                 echo '<h3>' . htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8') . '</h3>';
                 echo '<p>Preis: ' . htmlspecialchars($row['price'], ENT_QUOTES, 'UTF-8') . '€</p>';
-                echo '<form action="speisekarte.php" method="post" hx-post="speisekarte.php" hx-target="#warenkorb-section" hx-swap="innerHTML">';
+                echo '<form action="speisekarte.php" method="post" hx-post="speisekarte.php" hx-target="#warenkorb-content" hx-swap="innerHTML">';
                 echo '<input type="hidden" name="product_id" value="' . intval($row['id']) . '">';
                 echo '<button type="submit" name="add_to_cart">In den Warenkorb</button>';
                 echo '</form>';
@@ -75,7 +80,7 @@ include "header.php";
 
     <!-- Warenkorb Anzeige -->
     <h2>Ihr Warenkorb</h2>
-    <div class="warenkorb" id="warenkorb-section">
+    <div class="warenkorb" id="warenkorb-content">
         <?php
         include 'warenkorb_partial.php';
         ?>
@@ -88,6 +93,14 @@ include "header.php";
         <textarea name="address" required></textarea>
         <input type="submit" name="submit_order" value="Bestellung abschließen">
     </form>
+
+    <!-- Modal für Bestätigung -->
+    <div id="confirmation-modal" style="display:none; position:fixed; top:30%; left:30%; width:40%; height:40%; z-index:1000; background-color: rgba(0,0,0,0.8); color: white; padding: 20px; border-radius: 10px;">
+        <h2>Bestellung bestätigt!</h2>
+        <p>Ihre Bestellung wurde erfolgreich aufgenommen.</p>
+        <button onclick="document.getElementById('confirmation-modal').style.display='none';" style="padding: 10px 15px; background-color: #e74c3c; color: white; border: none; border-radius: 5px; cursor: pointer;">OK</button>
+    </div>
+
 
 </main>
 
