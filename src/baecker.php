@@ -1,6 +1,5 @@
 <?php
 include 'config.php';  // Die Konfigurationsdatei wird eingebunden
-include "header.php";  // Hier wird der Header geladen
 
 // Status-Update-Logik
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['status'], $_POST['ordered_article_id'])) {
@@ -13,6 +12,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['status'], $_POST['orde
     $stmt->execute();
 }
 
+// Überprüfen, ob es sich um eine HTMX-Anfrage handelt
+if (isset($_SERVER['HTTP_HX_REQUEST'])) {
+    // Nur den relevanten Codeabschnitt für die HTMX-Anfrage ausgeben und dann beenden
+    include "update_order_item.php";
+    exit();
+}
+
+// Wenn es keine HTMX-Anfrage ist, Header einbinden
+include "header.php";
 ?>
 
 <main>
@@ -29,9 +37,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['status'], $_POST['orde
 
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-            echo '<div class="order-item">';
+            echo '<div class="order-item" id="order-item-' . $row['ordered_article_id'] . '">';
             echo '<p>Pizza: ' . $row['name'] . ' - Bestellnummer: ' . $row['order_id'] . '</p>';
-            echo '<form action="baecker.php" method="post">';
+            echo '<form action="baecker.php" method="post" hx-post="baecker.php" hx-target="#order-item-' . $row['ordered_article_id'] . '" hx-swap="outerHTML">';
             echo '<select name="status">';
             echo '<option value="0"' . ($row['status'] == 0 ? ' selected' : '') . '>In Bearbeitung</option>';
             echo '<option value="1"' . ($row['status'] == 1 ? ' selected' : '') . '>Fertig zum Liefern</option>';
@@ -49,5 +57,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['status'], $_POST['orde
 </main>
 
 <?php
-include 'footer.php';  // Der Footer wird eingebunden
+// Wenn es keine HTMX-Anfrage ist, Footer einbinden
+include 'footer.php';
 ?>
